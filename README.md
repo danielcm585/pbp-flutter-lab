@@ -22,10 +22,6 @@ Stateless widget merupakan widget yang tidak dapat mengalami perubahan akibat pe
 
   Row & Column merupakan widget yang berfungsi sebagai layout dari children widget nya dengan arah horizontal untuk Row dan vertikal untuk Column.
 
-- Stack & Align
-
-  Stack merupakan widget yang berfungsi sebagai layout yang menumpuk children widget nya. Align berfungsi untuk mengatur penempatan children widget pada sebuah Stack.
-
 - Text
 
   Text merupakan widget yang berfungsi untuk menampilkan tulisan.
