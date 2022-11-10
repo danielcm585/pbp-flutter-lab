@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:counter_7/form.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,15 +14,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const MyHomePage(title: 'Program Counter'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({super.key, required this.title});
 
-  final String title = "Flutter Demo Home Page";
+  final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -61,30 +60,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
-      ),
-      drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            ListTile(
-              title: const Text('Counter'),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Form'),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(builder: (context) => const MyFormPage()),
-                );
-              }
-            )
-          ],
-        )
       ),
       body: Center(
         child: Column(
