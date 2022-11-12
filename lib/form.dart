@@ -80,7 +80,7 @@ class FormPageState extends State<FormPage> {
       body: Form(
         key: _formKey,
         child: Padding(
-          padding: EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           child: Column(
             children: <Widget>[
               TextFormField(
@@ -167,6 +167,15 @@ class FormPageState extends State<FormPage> {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 widget.saveData(Data(judul, nominal, jenis));
+                Navigator.pushReplacement(
+                  context, 
+                  MaterialPageRoute(
+                    builder: (context) => DataPage(
+                      saveData: widget.saveData,
+                      datas: widget.datas,
+                    )
+                  ),
+                );
               }
             },
             child: const Padding(

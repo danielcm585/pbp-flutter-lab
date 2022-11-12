@@ -61,12 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void saveData(Data newData) {
-    log(newData.title!);
-    // while (!mounted);
-    setState(() {
-      datas.add(newData);
-    });
-    log('DONE');
+    datas.add(newData);
   }
 
   @override

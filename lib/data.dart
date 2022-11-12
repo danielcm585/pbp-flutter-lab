@@ -73,33 +73,48 @@ class _DataPageState extends State<DataPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
-        child: Column(
-          children: widget.datas.map<Container>((data) => Container(
-            width: double.maxFinite,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: const Offset(0, 3), // changes position of shadow
-                ),
-              ],
-            ),
-            child: Column(
-              children: <Widget>[
-                Text(data.title!),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(data.amount!.toString()),
-                    Text(data.type!),
+        child: ListView(
+          children: widget.datas.map<Column>((data) => Column(
+            children: <Widget>[
+              Container(
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: const BorderRadius.all(Radius.circular(10)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: const Offset(0, 0), // changes position of shadow
+                    ),
                   ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        data.title!,
+                        style: const TextStyle(
+                          fontSize: 20
+                        )
+                      ),
+                      const SizedBox(height: 5),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(data.amount!.toString()),
+                          Text(data.type!),
+                        ],
+                      )
+                    ],
+                  )
                 )
-              ],
-            )
+              ),
+              const SizedBox(height: 8)
+            ]
           )).toList(),
         ),
       )
