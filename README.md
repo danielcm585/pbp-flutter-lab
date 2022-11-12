@@ -42,9 +42,21 @@ Fungsi setState() adalah untuk melakukan perubahan nilai dari state yang ada pad
 
 Final variable adalah variable yang tidak dapat diubah setelah di-*assign* suatu nilai. Const variable memiliki beberapa persamaan dengan final variable. Hal utama yang membedakan final dan const variable adalah nilai dari const variable sudah diberikan secara eksplisit saat *compile time*.
 
-## Implementasi 
+## Implementasi Tugas 7
 
 - Membuat fungsi _decrementCounter() untuk mengurangi counter.
 - Menambahkan FloatingActionButton pada bottomLeft layar.
 - Menambahkan Text yang menampilkan nilai dan paritas dari counter saat ini.
 - Menambahkan Visibility pada FloatingActionButton agar dapat disembunyikan pada kondisi tertentu.
+
+## Perbedaan Navigator.push dan Navigator.pushReplacement
+
+
+ 
+## Widget digunakan di proyek kali ini dan fungsinya
+
+## Jenis-jenis event yang ada pada Flutter 
+ 
+## Cara kerja Navigator dalam "mengganti" halaman dari aplikasi Flutter
+ 
+## Implementasi Tugas 8

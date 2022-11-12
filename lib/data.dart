@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:counter_7/main.dart';
-import 'package:counter_7/form.dart';
+import 'package:intl/intl.dart';
+import 'package:counter_7/drawer.dart';
 import 'package:counter_7/models/data_model.dart';
 
 class DataPage extends StatefulWidget {
@@ -24,52 +24,9 @@ class _DataPageState extends State<DataPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      drawer: Drawer(
-        child: 
-        Column(
-          children: <Widget>[
-            const SizedBox(
-              height: 100,
-            ),
-            ListTile(
-              title: const Text('counter_7'),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
-                );
-              }
-            ),
-            ListTile(
-              title: const Text('Tambah Budget'),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) => FormPage(
-                      saveData: widget.saveData,
-                      datas: widget.datas,
-                    )
-                  ),
-                );
-              }
-            ),
-            ListTile(
-              title: const Text('Data Budget'),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) => DataPage(
-                      saveData: widget.saveData,
-                      datas: widget.datas,
-                    )
-                  ),
-                );
-              }
-            ),
-          ],
-        )
+      drawer: AppDrawer(
+        saveData: widget.saveData,
+        datas: widget.datas
       ),
       body: Padding(
         padding: const EdgeInsets.all(10),
@@ -98,10 +55,18 @@ class _DataPageState extends State<DataPage> {
                       Text(
                         data.title!,
                         style: const TextStyle(
-                          fontSize: 20
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
                         )
                       ),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 2),
+                      Text(
+                        DateFormat.yMMMMd('en_US').format(data.date!),
+                        style: const TextStyle(
+                          color: Colors.blue
+                        )
+                      ),
+                      const SizedBox(height: 2),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -113,7 +78,7 @@ class _DataPageState extends State<DataPage> {
                   )
                 )
               ),
-              const SizedBox(height: 8)
+              const SizedBox(height: 8),
             ]
           )).toList(),
         ),

@@ -1,7 +1,7 @@
 import 'dart:developer';
+
 import 'package:flutter/material.dart';
-import 'package:counter_7/form.dart';
-import 'package:counter_7/data.dart';
+import 'package:counter_7/drawer.dart';
 import 'package:counter_7/models/data_model.dart';
 
 void main() {
@@ -61,6 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void saveData(Data newData) {
+    log(newData.date.toString());
     datas.add(newData);
   }
 
@@ -70,52 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      drawer: Drawer(
-        child: 
-        Column(
-          children: <Widget>[
-            const SizedBox(
-              height: 100,
-            ),
-            ListTile(
-              title: const Text('counter_7'),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
-                );
-              }
-            ),
-            ListTile(
-              title: const Text('Tambah Budget'),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) => FormPage(
-                      saveData: saveData,
-                      datas: datas,
-                    )
-                  ),
-                );
-              }
-            ),
-            ListTile(
-              title: const Text('Data Budget'),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) => DataPage(
-                      saveData: saveData,
-                      datas: datas,
-                    )
-                  ),
-                );
-              }
-            ),
-          ],
-        )
+      drawer: AppDrawer(
+        saveData: saveData,
+        datas: datas,
       ),
       body: Center(
         child: Column(

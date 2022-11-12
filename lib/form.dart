@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:counter_7/main.dart';
+import 'package:counter_7/drawer.dart';
 import 'package:counter_7/data.dart';
 import 'package:counter_7/models/data_model.dart';
 
@@ -24,6 +24,7 @@ class FormPageState extends State<FormPage> {
   int nominal = 0;
   String? jenis;
   List<String> listJenis = <String>['Pemasukkan', 'Pengeluaran'];
+  DateTime date = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -31,57 +32,15 @@ class FormPageState extends State<FormPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            const SizedBox(
-              height: 100,
-            ),
-            ListTile(
-              title: const Text('counter_7'),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
-                );
-              }
-            ),
-            ListTile(
-              title: const Text('Tambah Budget'),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) => FormPage(
-                      saveData: widget.saveData,
-                      datas: widget.datas,
-                    )
-                  ),
-                );
-              }
-            ),
-            ListTile(
-              title: const Text('Data Budget'),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context, 
-                  MaterialPageRoute(
-                    builder: (context) => DataPage(
-                      saveData: widget.saveData,
-                      datas: widget.datas,
-                    )
-                  ),
-                );
-              }
-            ),
-          ],
-        )
+      drawer: AppDrawer(
+        saveData: widget.saveData,
+        datas: widget.datas,
       ),
       body: Form(
         key: _formKey,
         child: Padding(
           padding: const EdgeInsets.all(15),
-          child: Column(
+          child: ListView(
             children: <Widget>[
               TextFormField(
                 decoration: InputDecoration(
@@ -146,6 +105,37 @@ class FormPageState extends State<FormPage> {
                   setState(() { jenis = value!; });
                 },
               ),
+              const SizedBox(
+                height: 10,
+              ),
+              OutlinedButton.icon(
+                onPressed: () {
+                  showDatePicker(
+                    context: context, 
+                    initialDate: date, 
+                    firstDate: date.subtract(const Duration(days: 1000)), 
+                    lastDate: date.add(const Duration(days: 1000))
+                  ).then((selectedDate) {
+                    setState(() { date = selectedDate!; });
+                  });
+                }, 
+                style: ButtonStyle(
+                  side: MaterialStateProperty.all<BorderSide>(
+                    const BorderSide(
+                      color: Colors.blue,
+                    )
+                  ),
+                  backgroundColor: MaterialStateProperty.all(Colors.white),
+                  foregroundColor: MaterialStateProperty.all(Colors.blue),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    )
+                  )
+                ),
+                icon: const Icon(Icons.calendar_month), 
+                label: const Text('Pilih Tanggal'),
+              ),
             ]
           ),
         )
@@ -160,13 +150,13 @@ class FormPageState extends State<FormPage> {
               foregroundColor: MaterialStateProperty.all(Colors.white),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(12),
                 )
               )
             ),
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                widget.saveData(Data(judul, nominal, jenis));
+                widget.saveData(Data(judul, nominal, jenis, date));
                 Navigator.pushReplacement(
                   context, 
                   MaterialPageRoute(
