@@ -2,11 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:counter_7/main.dart';
 import 'package:counter_7/data.dart';
+import 'package:counter_7/models/data_model.dart';
 
 class FormPage extends StatefulWidget {
-  const FormPage({super.key});
+  const FormPage({super.key,
+    required this.saveData,
+    required this.datas
+  });
 
   final String title = 'Form Budget';
+  final Function(Data newData) saveData;
+  final List<Data> datas;
 
   @override
   State<FormPage> createState() => FormPageState();
@@ -16,8 +22,8 @@ class FormPageState extends State<FormPage> {
   final _formKey = GlobalKey<FormState>();
   String judul = ''; 
   int nominal = 0;
-  String jenis = '';
-  List<String> listJenis = ['Pemasukkan', 'Pengeluaran'];
+  String? jenis;
+  List<String> listJenis = <String>['Pemasukkan', 'Pengeluaran'];
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +32,7 @@ class FormPageState extends State<FormPage> {
         title: Text(widget.title),
       ),
       drawer: Drawer(
-        child: 
-        Column(
+        child: Column(
           children: <Widget>[
             const SizedBox(
               height: 100,
@@ -46,7 +51,12 @@ class FormPageState extends State<FormPage> {
               onTap: () {
                 Navigator.pushReplacement(
                   context, 
-                  MaterialPageRoute(builder: (context) => const FormPage()),
+                  MaterialPageRoute(
+                    builder: (context) => FormPage(
+                      saveData: widget.saveData,
+                      datas: widget.datas,
+                    )
+                  ),
                 );
               }
             ),
@@ -55,7 +65,12 @@ class FormPageState extends State<FormPage> {
               onTap: () {
                 Navigator.pushReplacement(
                   context, 
-                  MaterialPageRoute(builder: (context) => const DataPage()),
+                  MaterialPageRoute(
+                    builder: (context) => DataPage(
+                      saveData: widget.saveData,
+                      datas: widget.datas,
+                    )
+                  ),
                 );
               }
             ),
@@ -88,7 +103,7 @@ class FormPageState extends State<FormPage> {
                   return null;
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10
               ),
               TextFormField(
@@ -115,29 +130,57 @@ class FormPageState extends State<FormPage> {
                   return null;
                 },
               ),
-              ListTile(
-                leading: const Icon(Icons.class_),
-                title: const Text(
-                  'Kelas PBP',
-                ),
-                trailing: DropdownButton(
-                  value: jenis,
-                  icon: const Icon(Icons.keyboard_arrow_down),
-                  items: listJenis.map((String items) {
-                    return DropdownMenuItem(
-                      value: items,
-                      child: Text(items),
-                    );
-                  }).toList(),
-                  onChanged: (String? value) {
-                    setState(() { jenis = value!; });
-                  },
-                ),
+              const SizedBox(
+                height: 10
+              ),
+              DropdownButton<String>(
+                value: jenis,
+                icon: const Icon(Icons.keyboard_arrow_down),
+                elevation: 16,
+                hint: const Text('Pilih Jenis'),
+                items: listJenis.map<DropdownMenuItem<String>>((String item) => DropdownMenuItem<String>(
+                  value: item,
+                  child: Text(item)
+                )).toList(),
+                onChanged: (String? value) {
+                  setState(() { jenis = value!; });
+                },
               ),
             ]
           ),
         )
-      )
+      ),
+      bottomSheet: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+        child: SizedBox(
+          width: double.maxFinite,
+          child: TextButton(
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.blue),
+              foregroundColor: MaterialStateProperty.all(Colors.white),
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                )
+              )
+            ),
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                widget.saveData(Data(judul, nominal, jenis));
+              }
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 5),
+              child: Text(
+                'Simpan',
+                style: TextStyle(
+                  fontSize: 15
+                ),
+              ),
+            )
+          )
+        )
+      ),
     );
   }
 }

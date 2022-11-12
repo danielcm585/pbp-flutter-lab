@@ -1,6 +1,8 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:counter_7/form.dart';
 import 'package:counter_7/data.dart';
+import 'package:counter_7/models/data_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,6 +35,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   String _parity = "GENAP";
+  List<Data> datas = <Data>[];
 
   void _incrementCounter() {
     setState(() {
@@ -55,6 +58,15 @@ class _MyHomePageState extends State<MyHomePage> {
         _parity = "GENAP";
       }
     });
+  }
+
+  void saveData(Data newData) {
+    log(newData.title!);
+    // while (!mounted);
+    setState(() {
+      datas.add(newData);
+    });
+    log('DONE');
   }
 
   @override
@@ -84,7 +96,12 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.pushReplacement(
                   context, 
-                  MaterialPageRoute(builder: (context) => const FormPage()),
+                  MaterialPageRoute(
+                    builder: (context) => FormPage(
+                      saveData: saveData,
+                      datas: datas,
+                    )
+                  ),
                 );
               }
             ),
@@ -93,7 +110,12 @@ class _MyHomePageState extends State<MyHomePage> {
               onTap: () {
                 Navigator.pushReplacement(
                   context, 
-                  MaterialPageRoute(builder: (context) => const DataPage()),
+                  MaterialPageRoute(
+                    builder: (context) => DataPage(
+                      saveData: saveData,
+                      datas: datas,
+                    )
+                  ),
                 );
               }
             ),
