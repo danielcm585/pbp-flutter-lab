@@ -93,7 +93,9 @@ Widget untuk mengatur padding dari suatu widget.
 
 ## Jenis-jenis event yang ada pada Flutter 
 
-- hmm
+- onPressed 
+
+Event yang di-*trigger* oleh penekanan suatu widget.
  
 ## Cara kerja Navigator dalam "mengganti" halaman dari aplikasi Flutter
 
