@@ -49,14 +49,61 @@ Final variable adalah variable yang tidak dapat diubah setelah di-*assign* suatu
 - Menambahkan Text yang menampilkan nilai dan paritas dari counter saat ini.
 - Menambahkan Visibility pada FloatingActionButton agar dapat disembunyikan pada kondisi tertentu.
 
-## Perbedaan Navigator.push dan Navigator.pushReplacement
+## Perbedaan `Navigator.push` dan `Navigator.pushReplacement`
 
+`Navigator.push` akan menampilkan layar lain di atas layar saat ini, sedangkan `Navigator.pushReplacement` akan menggantikan layar yang sedang ditampilkan dengan layar lain. Artinya, dengan `Navigator.push` kita dapat kembali ke layar sebelumnya, sedangkan pada `Navigator.pushReplacement` tidak.
 
- 
 ## Widget digunakan di proyek kali ini dan fungsinya
 
+- Drawer 
+
+Widget ini digunakan untuk membuat hamburger menu pada sisi kiri appbar yang dapat digunakan untuk navigasi.
+
+- SizedBox
+
+Widget ini dapat digunakan sebagai container dari layout lain dengan ukuran tertentu.
+
+- ListView
+
+Widget ini dapat digunakan untuk menampilkan children widget dalam sebuah list. Artinya, children widget dapat di-*scroll*.
+
+- ListTile
+
+Widget ini merupakan widget yang dapat menampilkan 1-3 baris teks dalam sebuah list.
+
+- TextFormField 
+
+Widget untuk menerima input teks.
+
+- DropdownButton
+
+Widget untuk menampilkan pilihan input.
+
+- OutlinedButton, TextButton
+
+Widget untuk membuat input berupa tombol.
+
+- Icon
+
+Widget untuk menampilkan ikon.
+
+- Padding, EdgeInsets
+
+Widget untuk mengatur padding dari suatu widget.
+
 ## Jenis-jenis event yang ada pada Flutter 
+
+- hmm
  
 ## Cara kerja Navigator dalam "mengganti" halaman dari aplikasi Flutter
+
+Navigator bekerja dengan menyerupai sebuah stack. Artinya, layar dimasukkan di atas dan dikeluarkan juga dari atas. Metode yang umum dilakukan adalah push untuk menampilkan layar baru dan pop untuk kembali ke layar sebelumnya.
  
 ## Implementasi Tugas 8
+
+- Membuat layar untuk menambahkan data pada `form.dart` dan layar untuk menampilkan data pada `data.dart`.
+- Membuat class sebagai tipe dari data yang akan disimpan pada `models/data_model.dart`.
+- Membuat array `datas` pada `main.dart` untuk menyimpan data dan fungsi `saveData(newData)` untuk memasukkan data ke array `datas`.
+- Membuat drawer pada `drawer.dart` untuk navigasi pada aplikasi.
+- Melakukan passing data dan fungsi antar layar.
+- Menambahkan input tanggal
