@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:counter_7/drawer.dart';
+import 'package:counter_7/components/drawer.dart';
 import 'package:counter_7/models/data_model.dart';
 
 class DataPage extends StatefulWidget {

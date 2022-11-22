@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:counter_7/drawer.dart';
-import 'package:counter_7/data.dart';
+import 'package:counter_7/components/drawer.dart';
+import 'package:counter_7/pages/data.dart';
 import 'package:counter_7/models/data_model.dart';
 
 class FormPage extends StatefulWidget {

@@ -1,8 +1,9 @@
+import 'package:counter_7/pages/watchlist.dart';
 import 'package:flutter/material.dart';
 import 'package:counter_7/models/data_model.dart';
 import 'package:counter_7/main.dart';
-import 'package:counter_7/form.dart';
-import 'package:counter_7/data.dart';
+import 'package:counter_7/pages/form.dart';
+import 'package:counter_7/pages/data.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({super.key,
@@ -51,6 +52,20 @@ class AppDrawer extends StatelessWidget {
                 context, 
                 MaterialPageRoute(
                   builder: (context) => DataPage(
+                    saveData: saveData,
+                    datas: datas,
+                  )
+                ),
+              );
+            }
+          ),
+          ListTile(
+            title: const Text('My Watchlist'),
+            onTap: () {
+              Navigator.pushReplacement(
+                context, 
+                MaterialPageRoute(
+                  builder: (context) => WatchlistPage(
                     saveData: saveData,
                     datas: datas,
                   )
