@@ -49,6 +49,7 @@ class _WatchlistItemState extends State<WatchlistItem> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(color: isChecked ? Colors.blue : Colors.red),
           boxShadow: const [
             BoxShadow(
               color: Colors.black,
