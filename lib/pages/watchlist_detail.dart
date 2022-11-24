@@ -3,10 +3,10 @@ import 'package:counter_7/models/data_model.dart';
 import 'package:counter_7/models/watchlist_model.dart';
 import 'package:flutter/material.dart';
 
-class WatchlistDetailPage extends StatefulWidget {
-  const WatchlistDetailPage({super.key,
-    required this.saveData,
-    required this.datas,
+class WatchlistDetailPage extends StatelessWidget {
+  const WatchlistDetailPage({super.key, 
+    required this.saveData, 
+    required this.datas, 
     required this.watchlist
   });
 
@@ -16,19 +16,14 @@ class WatchlistDetailPage extends StatefulWidget {
   final Watchlist watchlist;
 
   @override
-  State<WatchlistDetailPage> createState() => _WatchlistDetailPageState();
-}
-
-class _WatchlistDetailPageState extends State<WatchlistDetailPage> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(title),
       ),
       drawer: AppDrawer(
-        saveData: widget.saveData,
-        datas: widget.datas
+        saveData: saveData,
+        datas: datas
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -37,7 +32,7 @@ class _WatchlistDetailPageState extends State<WatchlistDetailPage> {
             const SizedBox(height: 20),
             Center(
               child: Text(
-                widget.watchlist.title!,
+                watchlist.title!,
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20
@@ -51,7 +46,7 @@ class _WatchlistDetailPageState extends State<WatchlistDetailPage> {
                   'Release Date: ',
                   style: TextStyle(fontWeight: FontWeight.bold)
                 ),
-                Text('${widget.watchlist.releaseDate}')
+                Text('${watchlist.releaseDate}')
               ],
             ),
             const SizedBox(height: 10),
@@ -61,7 +56,7 @@ class _WatchlistDetailPageState extends State<WatchlistDetailPage> {
                   'Rating: ',
                   style: TextStyle(fontWeight: FontWeight.bold)
                 ),
-                Text('${widget.watchlist.rating}')
+                Text('${watchlist.rating}')
               ],
             ),
             const SizedBox(height: 10),
@@ -71,7 +66,7 @@ class _WatchlistDetailPageState extends State<WatchlistDetailPage> {
                   'Status: ',
                   style: TextStyle(fontWeight: FontWeight.bold)
                 ),
-                Text(widget.watchlist.watched! ? 'watched' : 'not watched')
+                Text(watchlist.watched! ? 'watched' : 'not watched')
               ],
             ),
             const SizedBox(height: 10),
@@ -84,14 +79,14 @@ class _WatchlistDetailPageState extends State<WatchlistDetailPage> {
                     fontWeight: FontWeight.bold
                   )
                 ),
-                Text(widget.watchlist.review!)
+                Text(watchlist.review!)
               ],
             )
           ],
         ),
       ),
       bottomSheet: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
         child: SizedBox(
           width: double.maxFinite,
           child: TextButton(
@@ -106,11 +101,11 @@ class _WatchlistDetailPageState extends State<WatchlistDetailPage> {
             ),
             onPressed: () {
               Navigator.pop(context);
-            },
+            }, 
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 5),
               child: Text(
-                'Simpan',
+                'Back',
                 style: TextStyle(
                   fontSize: 15
                 ),
@@ -118,7 +113,7 @@ class _WatchlistDetailPageState extends State<WatchlistDetailPage> {
             )
           )
         )
-      ),
+      )
     );
   }
 }

@@ -19,13 +19,11 @@ class WatchlistItem extends StatefulWidget {
 }
 
 class _WatchlistItemState extends State<WatchlistItem> {
-  bool isChecked = false;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushReplacement(
+        Navigator.push(
           context, 
           MaterialPageRoute(
             builder: (context) => WatchlistDetailPage(
