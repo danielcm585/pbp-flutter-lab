@@ -1,10 +1,8 @@
-import 'dart:convert';
 import 'package:counter_7/components/watchlist_item.dart';
+import 'package:counter_7/utils/fetch_watchlist.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:counter_7/components/drawer.dart';
 import 'package:counter_7/models/data_model.dart';
-import 'package:counter_7/models/watchlist_model.dart';
 
 class WatchlistPage extends StatefulWidget {
   const WatchlistPage({super.key,
@@ -21,27 +19,6 @@ class WatchlistPage extends StatefulWidget {
 }
 
 class _WatchlistPageState extends State<WatchlistPage> {
-  Future<List<Watchlist>> fetchWatchlist() async {
-    var url = Uri.parse('https://pbp-tugas2-daniel.herokuapp.com/mywatchlist/json/');
-    var response = await http.get(
-      url,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json',
-      }
-    );
-
-    var datas = jsonDecode(utf8.decode(response.bodyBytes));
-
-    List<Watchlist> listWatchlist = [];
-    for (var data in datas) {
-      if (data == null) continue;
-      listWatchlist.add(Watchlist.fromJson(data));
-    }
-
-    return listWatchlist;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

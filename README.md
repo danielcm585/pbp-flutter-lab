@@ -88,3 +88,4 @@ Bisa, namun implementasi tersebut bukanlah hal yang baik digunakan karena dengan
 - Melakukan request ke Django API dari `/pages/watchlist.dart` yang kemudian ditampilkan menjadi list of `WatchlistItem`.
 - Menambahklan navigator pada layar-layar baru tersebut.
 - Menambahkan checkbox yang dapat melakukan pemanggilan request secara asynchronous ke Django API.
+- Memindahkan fungsi fetch data ke file terpisah.
