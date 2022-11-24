@@ -65,3 +65,26 @@ Navigator bekerja dengan menyerupai sebuah stack. Artinya, layar dimasukkan di a
 - Membuat drawer pada `drawer.dart` untuk navigasi pada aplikasi.
 - Melakukan passing data dan fungsi antar layar.
 - Menambahkan input tanggal
+
+# Tugas 9
+
+## Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+
+Bisa, namun implementasi tersebut bukanlah hal yang baik digunakan karena dengan mengimplementasikan model terlebih dahulu sebelum melakukan pengambilan data JSON akan membuat program kita menjadi lebih terstruktur dan rapi.
+
+## Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
+
+- `Inkwell`: Widget yang dapat membuat widget child nya bisa di-tekan.
+- `Checkbox`: Widget yang dapat menampilkan input berbentuk checkbox.
+
+## Jelaskan mekanisme pengambilan data dari json hingga dapat ditampilkan pada Flutter.
+
+- Widget melakukan request ke API untuk memperoleh data JSON.
+- Data JSON yang diperoleh kemudian di-decode kemudian di-convert menjadi bentuk class di Dart.
+- Data tersebut kemudian ditampilkan kepada user melalui suatu widget.
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+
+- Membuat page baru `/pages/watchlist.dart` dan `/pages/watchlist_detail.dart`.
+- Melakukan request ke Django API dari `/pages/watchlist.dart` yang kemudian ditampilkan menjadi list of `WatchlistItem`.
+- Menambahklan navigator pada layar-layar baru tersebut.
+- Menambahkan checkbox yang dapat melakukan pemanggilan request secara asynchronous ke Django API.

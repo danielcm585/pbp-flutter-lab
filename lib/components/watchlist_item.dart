@@ -1,3 +1,4 @@
+import 'package:http/http.dart' as http;
 import 'package:counter_7/models/data_model.dart';
 import 'package:counter_7/models/watchlist_model.dart';
 import 'package:counter_7/pages/watchlist_detail.dart';
@@ -19,6 +20,14 @@ class WatchlistItem extends StatefulWidget {
 }
 
 class _WatchlistItemState extends State<WatchlistItem> {
+  late bool isChecked = true;
+
+  @override
+  void initState() {
+    super.initState();
+    isChecked = widget.watchlist.watched!;
+  }
+  
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -36,7 +45,7 @@ class _WatchlistItemState extends State<WatchlistItem> {
       },
       child: Container(
         margin: const EdgeInsets.only(left: 16, right: 16, top: 16),
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(2),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10.0),
@@ -47,8 +56,28 @@ class _WatchlistItemState extends State<WatchlistItem> {
             )
           ]
         ),
-        child: Text(
-          "${widget.watchlist.title}",
+        child: Row(
+          children: [
+            Checkbox(
+              value: isChecked, 
+              onChanged: (bool? newValue) {
+                setState(() {
+                  isChecked = !isChecked;
+                });
+                var url = Uri.parse('https://pbp-tugas2-daniel.herokuapp.com/mywatchlist/check/${widget.watchlist.pk}');
+                http.get(
+                  url,
+                  headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json',
+                  }
+                );
+              }
+            ),
+            Text(
+              "${widget.watchlist.title}",
+            )
+          ],
         )
       ),
     );
